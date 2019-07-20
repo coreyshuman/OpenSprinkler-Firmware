@@ -43,6 +43,10 @@ if [ ! "$SILENT" = true ] && [ -f OpenSprinkler.launch ] && [ ! -f /etc/init.d/O
 	# Move start up script to init.d directory
 	sudo mv OpenSprinkler.sh /etc/init.d/
 
+	# Move drop-in config file into sytem directory
+	sudo mkdir /etc/systemd/system/OpenSprinkler.service.d
+	sudo cp restart.conf > /etc/systemd/system/OpenSprinkler.service.d/
+
 	# Add to auto-launch on system startup
 	sudo update-rc.d OpenSprinkler.sh defaults
 
